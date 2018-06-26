@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <title>Edit Account</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h5>Edit My Account</h5>
+            <a class='btn btn-secondary' href="/logout" type='submit'>Logout</a>
+            <a class='back' href="/quotes">Back</a>
+        </div>
+        <div class="main_content">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <form action="update/{{id}}" method="post">
+                {% csrf_token %}
+                First Name:<br>
+                <input type="text" name="first_name" value="{{first_name}}"><br>
+                Last Name:<br>
+                <input type="text" name="last_name" value="{{last_name}}"><br>
+                Email:<br>
+                <input type="text" name="email" value="{{email}}"><br><br>
+                <button class='btn btn-primary' type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+</body>
+<style>
+    *{
+        margin-top: 10px;
+    }
+    .header{
+        margin: 20px 0px;
+    }
+    .btn-secondary, .back{
+        float: right;
+        padding: 0px 6px;
+        margin: 0px 10px;
+        position: relative;
+        bottom: 40px;
+    }
+</style>
+</html>

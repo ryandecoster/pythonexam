@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <title>A Web Page</title>
+</head>
+<body>
+    <div class="container">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <h1>Registration</h1>
+        <form class='form-control' action="register" method='POST'>
+            {% csrf_token %}
+            <div class="form-group">
+                <b>First Name:</b><br> <input type="text" name="first_name" value="" />
+            </div>
+            <div class="form-group">
+                <b>Last Name:</b><br> <input type="text" name="last_name" value="" />
+            </div>
+            <div class="form-group">
+                <b>Email:</b><br> <input type="text" name="email" value="" />
+            </div>
+            <div class="form-group">
+                <b>Password:</b><br> <input type="password" name="password" value="" />
+            </div>
+            <div class="form-group">
+                <b>Confirm Password:</b><br> <input type="password" name="confirm" value="" />
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form><br><br>
+        <h1>Login</h1>
+        <form class='form-control' action="login" method='POST'>
+            {% csrf_token %}
+            <div class="form-group">
+                <b>Email:</b><br> <input type="text" name="email" value="" />
+            </div>
+            <div class="form-group">
+                <b>Password:</b><br> <input type="password" name="password" value="" />
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</body>
+<style>
+    *{
+        margin-top: 10px;
+    }
+    li{
+        color: red;
+        font-weight: bold;
+    }
+</style>
+</html>
